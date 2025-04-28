@@ -100,7 +100,7 @@
 # contraseña=int(input("Ingrese su contraseña: "))
 # while contraseña!=pasw:
 #     print("Error, Clave incorrecta")
-#     tries+=1
+#     tries +=1
 #     contraseña=int(input("Ingrese su contraseña: "))
 
 
@@ -215,3 +215,5 @@ while lp1>=0 or lp2>=0:
         turn=1
 
 print("El ganador es:", winner)
+
+
