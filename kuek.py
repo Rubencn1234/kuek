@@ -2,34 +2,129 @@ import time
 import sys
 from PyQt5.QtWidgets import (QApplication, QLabel, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QLineEdit, QPushButton)
 from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt
 
-class MainWindow(QWidget):
+
+signed = 0
+tuser = "admin"
+tpassw = "admin"
+
+class Promediador(QWidget):
     def __init__(self):
         super().__init__()
-        self.setGeometry(700, 300, 500, 500)
+        self.setGeometry(700, 300, 600, 300)
         self.setWindowIcon(QIcon())
+        self.title_label = QLabel("Sistema de notas", self)
+        self.subtitle_label = QLabel("Por favor, Ingrese sus credenciales", self)
+        self.user_label = QLabel("Ingrese usuario", self)
         self.user_input = QLineEdit(self)
+        self.pasw_label = QLabel("Ingrese contraseña", self)
         self.pasw_input = QLineEdit(self)
-        self.sign_in = QPushButton("Ingresar", self)
+        self.sign_in_button = QPushButton("Ingresar", self)
+        self.welcome_label = QLabel("", self)
+
+        
         self.initUI()
 
     def initUI(self):
-        self.setWindowTitle("Promediador de notas")
+        self.setWindowTitle("Sistema de notas")
         vbox = QVBoxLayout()
+        vbox.addWidget
+        vbox.addWidget(self.title_label)
+        vbox.addWidget(self.subtitle_label)
+        vbox.addWidget(self.user_label)
         vbox.addWidget(self.user_input)
+        vbox.addWidget(self.pasw_label)
         vbox.addWidget(self.pasw_input)
-        vbox.addWidget(self.sign_in)
+        vbox.addWidget(self.sign_in_button)
+        vbox.addWidget(self.welcome_label)
+
 
         self.setLayout(vbox)
 
-        self.user_input.setAlignment()
+        self.title_label.setAlignment(Qt.AlignCenter)
+        self.subtitle_label.setAlignment(Qt.AlignCenter)
+        self.user_input.setAlignment(Qt.AlignCenter)
+        self.user_label.setAlignment(Qt.AlignCenter)
+        self.pasw_input.setAlignment(Qt.AlignCenter)
+        self.pasw_label.setAlignment(Qt.AlignCenter)
+        self.welcome_label.setAlignment(Qt.AlignCenter)
+
+        self.user_label.setObjectName("user_label")
+        self.user_input.setObjectName("user_input")
+        self.pasw_label.setObjectName("pasw_label")
+        self.pasw_input.setObjectName("pasw_input")
+        self.welcome_label.setObjectName("welcome_label")
+        self.title_label.setObjectName("title_label")
+        self.subtitle_label.setObjectName("subtitle_label")
+
+        self.setStyleSheet("""
+            QLabel, QPushButton{
+                font-family: Arial
+            }
+            QLabel#title_label{
+                font-size: 30px;
+                font-weight: bold;
+            }
+            QLabel#subtitle_label{
+                font-size: 25px;
+            }
+            QLabel#user_label{
+                font-size: 20px;
+            }
+            QLineEdit#user_input{
+                font-size: 20px;
+            }
+            QLabel#pasw_label{
+                font-size: 20px;
+            }
+        """)
+
+
+        self.sign_in_button.clicked.connect(self.sign_in)
+
+    def sign_in(self):
+        user = self.user_input.text()
+        passw = self.pasw_input.text()
+        tries = 3
+
+        if user==tuser and passw==tpassw:
+            valid = 1
+            print("Valid",user, passw)
+            self.welcome_label.setText(f"Bienvenido {user} al sistema de notas")
+            self.sign_in_button.deleteLater()
+            self.user_label.deleteLater()
+            self.user_input.deleteLater()
+            self.pasw_label.deleteLater()
+            self.pasw_input.deleteLater()
+            self.title_label.deleteLater()
+            self.subtitle_label.deleteLater()
+            self.welcome_label.setAlignment(Qt.AlignCenter)
+
+
+
+
+
+        else:
+            tries = (tries-1)
+            print("Clave y/o usuario invalida/o")
+            print("Le quedan", tries, "intentos")
+
+        
+        
+        
+
 
 
 def main():
     app = QApplication(sys.argv)
-    window = MainWindow()
+    window = Promediador()
     window.show()
     sys.exit(app.exec_())
+
+
+
+
 
 
 if __name__ == '__main__':
@@ -38,10 +133,7 @@ if __name__ == '__main__':
 
 
 
-# tries = int(0)
-# signed = int(0)
-# tuser = "admin"
-# tpassw = "admin"
+
 # for i in range (0, 3):
 #     if tries<3:
 #         user = str(input("Ingrese usuario: "))
