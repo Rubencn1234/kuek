@@ -244,5 +244,50 @@
 
 #----------------------------------------------------------------------------
 
+# par=0
+# impar=0
+
+# n1 = int(input("Ingrese un numero: "))
+
+# for i in range(n1):
+#     if i % 2:
+#         print(i, "Impar")
+#     else:
+#         print(i, "Par")
+
+#----------------------------------------------------------------------------
+
+# sum=0
+# num=int(input("[Ingrese 0 para salir] Ingrese un numero a sumar: "))
+# while num!=0:
+#     sum+=num
+#     print("Suma actual:", sum)
+#     num=int(input("[Ingrese 0 para salir] Ingrese un numero a sumar: "))
 
 
+# print("Cantidad de numeros ingresados:", total)
+# print("Suma de numeros ingresados:", sum)
+
+#----------------------------------------------------------------------------
+
+# import random
+# mul=random.randint(2,8)
+# n1 = int(input("Ingrese un numero: "))
+# print("El multiplicador es:", mul)
+# resul=n1*mul
+# print("Su resultado es:", resul)
+# if resul>50:
+#     print("Si")
+# else:
+#     print("No")
+
+#----------------------------------------------------------------------------
+
+# n1=input("Ingrese un numero: ")
+# if n1<0:
+#     print("negativo")
+# elif n1>0:
+#     print("Positivo")
+
+# else:
+#     print(0)
