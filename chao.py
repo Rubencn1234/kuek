@@ -179,41 +179,61 @@
 
 #----------------------------------------------------------------------------
 
-import random
-import time
-turn=random.randint(1,2)
-lp1=50
-lp2=50
-winner=str("Nadie")
-p1 = str(input("Ingrese el nombre del jugador 1: "))
-p2 = str(input("Ingrese el nombre del jugador 2: "))
-while lp1>=0 or lp2>=0:
-    time.sleep(1)
-    if turn==1:
-        print("Turno de", p1)
-        dam=random.randint(1,10)
-        print(p1,"le a hecho", dam, "de daño a ", p2)
-        lp2-=dam
-        if lp2>0:
-            print("A ", p2, "le quedan", lp2, "de vida")
-        else:
-            print(p2, "a sido derrotado")
-            winner=p1
-            break
-        turn=2
-    else:
-        print("Turno de", p2)
-        dam=random.randint(1,10)
-        print(p2, "le a hecho", dam, "de daño a ", p1)
-        lp1-=dam
-        if lp1>0:
-            print("A ", p1, "le quedan", lp1, "de vida")
-        else:
-            print(p1, "a sido derrotado")
-            winner=(p2)
-            break
-        turn=1
+# import random
+# import time
+# turn=random.randint(1,2)
+# lp1=50
+# lp2=50
+# winner=str("Nadie")
+# p1 = str(input("Ingrese el nombre del jugador 1: "))
+# p2 = str(input("Ingrese el nombre del jugador 2: "))
+# while lp1>=0 or lp2>=0:
+#     time.sleep(1)
+#     if turn==1:
+#         print("Turno de", p1)
+#         dam=random.randint(1,10)
+#         print(p1,"le a hecho", dam, "de daño a ", p2)
+#         lp2-=dam
+#         if lp2>0:
+#             print("A ", p2, "le quedan", lp2, "de vida")
+#         else:
+#             print(p2, "a sido derrotado")
+#             winner=p1
+#             break
+#         turn=2
+#     else:
+#         print("Turno de", p2)
+#         dam=random.randint(1,10)
+#         print(p2, "le a hecho", dam, "de daño a ", p1)
+#         lp1-=dam
+#         if lp1>0:
+#             print("A ", p1, "le quedan", lp1, "de vida")
+#         else:
+#             print(p1, "a sido derrotado")
+#             winner=(p2)
+#             break
+#         turn=1
 
-print("El ganador es:", winner)
+# print("El ganador es:", winner)
+
+#----------------------------------------------------------------------------
+
+# for i in range (1,10,3):
+#     print(i)
+
+#----------------------------------------------------------------------------
+
+# aux=0
+# while (aux!=3):
+#     print("1-$1000")
+#     print("2-$500")
+#     print("3- salir")    
+#     aux = int(input("Input: "))
+#     if (aux==1):
+#         print("1")
+
+#----------------------------------------------------------------------------
+
+
 
 

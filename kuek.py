@@ -4,10 +4,18 @@ from PyQt5.QtWidgets import (QApplication, QLabel, QWidget, QVBoxLayout, QHBoxLa
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 
-
+user_type=0
 signed = 0
 tuser = "admin"
 tpassw = "admin"
+suser = "user"
+spassw = "user"
+nota_1 = float(0)
+nota_2 = float(0)
+nota_3 = float(0)
+nota_4 = float(0)
+
+
 
 class Promediador(QWidget):
     def __init__(self):
@@ -22,7 +30,10 @@ class Promediador(QWidget):
         self.pasw_input = QLineEdit(self)
         self.sign_in_button = QPushButton("Ingresar", self)
         self.welcome_label = QLabel("", self)
-
+        self.text1_label = QLabel("", self)
+        self.text2_label = QLabel("", self)
+        self.text3_label = QLabel("", self)        
+        self.text4_label = QLabel("", self)
         
         self.initUI()
 
@@ -90,8 +101,9 @@ class Promediador(QWidget):
 
         if user==tuser and passw==tpassw:
             valid = 1
+            user_type = 1
             print("Valid",user, passw)
-            self.welcome_label.setText(f"Bienvenido {user} al sistema de notas")
+            self.welcome_label.setText(f"Bienvenido {user} al sistema de notas (profesor)")
             self.sign_in_button.deleteLater()
             self.user_label.deleteLater()
             self.user_input.deleteLater()
@@ -102,6 +114,11 @@ class Promediador(QWidget):
             self.welcome_label.setAlignment(Qt.AlignCenter)
 
 
+        elif user==suser and passw==spassw:
+            valid=1
+            user_type=2
+            print(valid, user, passw)
+            self.welcome_label.setText(f"Bienvenido {user} al sistema de notas (Estudiante)")
 
 
 
