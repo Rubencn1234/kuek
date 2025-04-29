@@ -234,6 +234,15 @@
 
 #----------------------------------------------------------------------------
 
+# edad=-1
+# while (edad <0 or edad>100):
+#     edad=int(input("Ingrese edad: "))
+#     if (edad<0 or edad>100):
+#         print("Error, edad fuera de rango.")
+
+# print("Edad ingresada correctamente.")
+
+#----------------------------------------------------------------------------
 
 
 
