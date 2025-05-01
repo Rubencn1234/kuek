@@ -133,11 +133,6 @@ class Promediador(QWidget):
 
 
 
-def main():
-    app = QApplication(sys.argv)
-    window = Promediador()
-    window.show()
-    sys.exit(app.exec_())
 
 
 
