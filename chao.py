@@ -291,3 +291,114 @@
 
 # else:
 #     print(0)
+
+#----------------------------------------------------------------------------
+
+# import random
+
+# botella = int(10)
+# sed = True
+# rellenar = ""
+# tomar = False
+# trago = random.randint(30, 60)
+
+# while botella >= 0:
+#     if sed == True:
+#         print("Tienes sed")
+#         ans = str(input("Desea tomar agua?: "))
+#         if ans=="si":
+#             botella = botella-trago
+#             tomar = True
+#             print(f"Has tomado agua, a la botella le quedan {botella}ml")
+#         elif ans=="no":
+#             print("No has tomado agua")
+
+# while botella <= 0:
+#     print("Botella vacia")
+#     rellenar = str(input("Rellenar botella?: "))
+#     if rellenar=="si":
+#         botella=1000
+#         print("Has rellenado la botella")
+#     elif rellenar=="no":
+#         print("No has rellenado la botella")
+
+
+
+#----------------------------------------------------------------------------
+
+# import time
+# e_level = float(1)
+# nacionalidad=0
+# points=float(0)
+# sueldo=float(0)
+
+# print("Calculadora de puntaje crediticio.")
+# income = int(input("Ingrese cuales son sus ingresos mensuales: "))
+# if income < 500000:
+#     print("Ingresos menores a $500.000")
+#     sueldo=100000
+
+# elif income>=500000 and income<1000000:
+#     print("Ingresos mayores a $500.000 y menores a $1.000.000")
+#     sueldo=300000
+
+# elif income>1000000 and income<1500000:
+#     print("Ingresos mayores a $1.000.000 ")
+#     sueldo=650000
+# elif income>1500000:
+#     print("Ingresos mayores a 1.500.000")
+#     sueldo=1000000
+
+
+# ans1 = int(input("Ingrese su nivel de educación. 1: Basico, 2: Medio, 3: Superior "))
+
+# if ans1==1:
+#     print("Su nivel de educacion es basico")
+#     e_level=1
+
+# elif ans1==2:
+#     print("Su nivel de educacion es medio")
+#     e_level=1.3
+
+# elif ans1==3:
+#     print("Su nivel de educacion es superior")
+#     e_level=1.5
+
+# print("Su nacionalidad es chilena o extranjera? 1. Chileno, 2. Extranjero")
+# nacionalidad=int(input())
+
+# print("Calculando puntaje")
+# points=sueldo*e_level
+
+# if nacionalidad == 1:
+#     points += 300000
+
+# print(f"Su puntaje crediticio es: {points}")
+
+#----------------------------------------------------------------------------
+
+# ▄ (alt+220)
+
+#----------------------------------------------------------------------------
+
+# import random
+
+# n1 = int(input("Ingrese un numero: "))
+# n2 = int(input("Ingrese otro numero: "))
+# resul = float(0)
+
+# if n2<n1:
+#     print("El segundo numero debe ser mayor al primero, intente nuevamente")
+#     n1 = int(input("Ingrese un numero: "))
+#     n2 = int(input("Ingrese otro numero: "))
+
+# resul = random.randint(n1, n2)
+# print(resul)
+
+
+# print("▄"*resul)
+
+#----------------------------------------------------------------------------
+
+
+
