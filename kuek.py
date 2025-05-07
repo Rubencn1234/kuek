@@ -1,227 +1,213 @@
-import time
-import sys 
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import (QApplication, QLabel, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QLineEdit, QPushButton)
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt
+import sys
+from PyQt5.QtWidgets import (
+    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
+    QLabel, QLineEdit, QPushButton, QStackedWidget, QMessageBox,
+    QTableWidget, QTableWidgetItem, QHeaderView
+)
+from PyQt5.QtCore import pyqtSignal, Qt
+
+class LoginWidget(QWidget):
+    login_successful = pyqtSignal(str)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Inicio de sesion")
+        self.failed_attempts = 0
+        self.max_attempts = 3
+
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(50, 50, 50, 50)
+        layout.setSpacing(15)
+
+        self.title_label = QLabel("<h1>Sistema de notas escolar</h1>")
+        self.title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.username_label = QLabel("Usuario:")
+        self.username_input = QLineEdit()
+        self.username_input.setPlaceholderText("Ingrese usuario (admin o estudiante)")
+        self.password_label = QLabel("Contraseña:")
+        self.password_input = QLineEdit()
+        self.password_input.setPlaceholderText("Ingrese contraseña (contra123 o pass)")
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        self.login_button = QPushButton("Iniciar Sesion")
+        self.login_button.clicked.connect(self.attempt_login)
+        self.password_input.returnPressed.connect(self.attempt_login)
+
+        layout.addWidget(self.title_label)
+        layout.addSpacing(20)
+        user_layout = QHBoxLayout()
+        user_layout.addWidget(self.username_label)
+        user_layout.addWidget(self.username_input)
+        layout.addLayout(user_layout)
+        pass_layout = QHBoxLayout()
+        pass_layout.addWidget(self.password_label)
+        pass_layout.addWidget(self.password_input)
+        layout.addLayout(pass_layout)
+        layout.addSpacing(20)
+        layout.addWidget(self.login_button, alignment=Qt.AlignmentFlag.AlignCenter)
+        layout.addStretch()
+
+    def attempt_login(self):
+        username = self.username_input.text()
+        password = self.password_input.text()
+
+        user_role = None 
+
+        if username == "admin" and password == "contra123":
+            print("Inicio de sesion de admin correcto")
+            user_role = "admin"
+        elif username == "estudiante" and password == "pass":
+             print("Inicio de sesion de estudiante correcto!")
+             user_role = "student"
+
+        if user_role: 
+            self.failed_attempts = 0
+            self.login_successful.emit(user_role)
+        else: 
+            self.failed_attempts += 1
+            print(f"Login Fallido! Intento {self.failed_attempts} de {self.max_attempts}")
+            if self.failed_attempts >= self.max_attempts:
+                QMessageBox.critical(self, "Login Bloquado",
+                                     f"Demasiados intentos de inicio de sesion ({self.max_attempts}). Login bloquado.")
+                self.username_input.setEnabled(False)
+                self.password_input.setEnabled(False)
+                self.login_button.setEnabled(False)
+            else:
+                remaining_attempts = self.max_attempts - self.failed_attempts
+                QMessageBox.warning(self, "Login Fallido",
+                                    f"Clave o usuario invalido. {remaining_attempts} intentos restantes.")
+                self.password_input.clear()
+                self.username_input.setFocus()
+
+    def reset_login_state(self):
+        self.failed_attempts = 0
+        self.username_input.setEnabled(True)
+        self.password_input.setEnabled(True)
+        self.login_button.setEnabled(True)
+        self.username_input.clear() 
+        self.password_input.clear()
+        self.username_input.setFocus()
+
+class AdminWidget(QWidget): 
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Tablero del admin") 
+
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(10)
+
+        self.title_label = QLabel("<h2>Admin - Administracion de notas</h2>")
+        self.title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.grade_table = QTableWidget()
+        self.grade_table.setColumnCount(3)
+        self.grade_table.setHorizontalHeaderLabels(["Student", "Subject", "Grade"])
+        self.grade_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.grade_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+
+        self.logout_button = QPushButton("Cerrar sesion")
+
+        layout.addWidget(self.title_label)
+        layout.addWidget(self.grade_table)
+        layout.addWidget(self.logout_button, alignment=Qt.AlignmentFlag.AlignRight)
+
+        self.load_grades()
+
+    def load_grades(self):
+        grades_data = [
+            ("Alicia Perez", "Matematicas", "7"),
+            ("Benjamin Contreras", "Matematicas", "6"),
+            ("Carlos Jara", "Matematicas", "6.5"),
+            ("Diego Montes", "Matematicas", "5.5"),
+            ("Elena Reyes", "Matematicas", "5"),
+            ("Felipe Parra", "Matematicas", "6.5"),
+        ]
+        self.grade_table.setRowCount(len(grades_data))
+        for row_idx, (student, subject, grade) in enumerate(grades_data):
+            self.grade_table.setItem(row_idx, 0, QTableWidgetItem(student))
+            self.grade_table.setItem(row_idx, 1, QTableWidgetItem(subject))
+            self.grade_table.setItem(row_idx, 2, QTableWidgetItem(grade))
 
 
-max_tries = int(3)
-signed = bool(False)
-teacher_user = "admin"
-teacher_passw = "admin"
-student_user = "user"
-student_passw = "user"
-is_teacher = bool(False)
-trying = bool(False)
-nota_1 = float(0)
-nota_2 = float(0)
-nota_3 = float(0)
-nota_4 = float(0)
+class StudentWidget(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Tablero del estudiante")
+
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(30, 30, 30, 30)
+        layout.setSpacing(15)
+
+        self.title_label = QLabel("<h2>Tus Notas</h2>")
+        self.title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.info_label = QLabel("Bienvenido Carlos\n\n Tu promedio es: 6.5")
+        self.info_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.info_label.setStyleSheet("font-size: 14px;") 
+
+        self.logout_button = QPushButton("Cerrar sesion")
+
+        layout.addWidget(self.title_label)
+        layout.addWidget(self.info_label)
+        layout.addStretch() 
+        layout.addWidget(self.logout_button, alignment=Qt.AlignmentFlag.AlignRight)
 
 
 
-class Promediador(QWidget):
+class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setGeometry(700, 300, 600, 300)
-        self.setWindowIcon(QIcon())
-        self.tries = 3
-        self.title_label = QLabel("Sistema de notas", self)
-        self.subtitle_label = QLabel("Por favor, Ingrese sus credenciales", self)
-        self.user_label = QLabel("Ingrese usuario", self)
-        self.user_input = QLineEdit(self)
-        self.pasw_label = QLabel("Ingrese contraseña", self)
-        self.pasw_input = QLineEdit(self)
-        self.signin_button = QPushButton("Ingresar", self)
-        self.welcome_label = QLabel("", self)
-        self.text1_label = QLabel("", self)
-        self.text2_label = QLabel("", self)
-        self.text3_label = QLabel("", self)        
-        self.text4_label = QLabel("", self)
-        
-        self.initUI()
+        self.setWindowTitle("Aplicacion escolar")
+        self.setMinimumSize(500, 400)
 
-    def initUI(self):
-        self.setWindowTitle("Sistema de notas")
-        vbox = QVBoxLayout()
-        vbox.addWidget
-        vbox.addWidget(self.title_label)
-        vbox.addWidget(self.subtitle_label)
-        vbox.addWidget(self.user_label)
-        vbox.addWidget(self.user_input)
-        vbox.addWidget(self.pasw_label)
-        vbox.addWidget(self.pasw_input)
-        vbox.addWidget(self.signin_button)
-        vbox.addWidget(self.welcome_label)
+        self.central_widget = QWidget()
+        self.setCentralWidget(self.central_widget)
 
-        self.timer = QtCore.QTimer(self)
-        self.timer.setInterval(1000)
-        self.timer.timeout.connect(self.update_counter)
-        self.counter = 0
+        self.stacked_widget = QStackedWidget(self.central_widget)
 
-        
+        self.login_screen = LoginWidget()
+        self.student_screen = StudentWidget()
+        self.admin_screen = AdminWidget()
 
-        self.setLayout(vbox)
+        self.login_screen_index = self.stacked_widget.addWidget(self.login_screen)
+        self.student_screen_index = self.stacked_widget.addWidget(self.student_screen)
+        self.admin_screen_index = self.stacked_widget.addWidget(self.admin_screen)
 
-        self.title_label.setAlignment(Qt.AlignCenter)
-        self.subtitle_label.setAlignment(Qt.AlignCenter)
-        self.user_input.setAlignment(Qt.AlignCenter)
-        self.user_label.setAlignment(Qt.AlignCenter)
-        self.pasw_input.setAlignment(Qt.AlignCenter)
-        self.pasw_label.setAlignment(Qt.AlignCenter)
-        self.welcome_label.setAlignment(Qt.AlignCenter)
+        main_layout = QVBoxLayout(self.central_widget)
+        main_layout.addWidget(self.stacked_widget)
+        main_layout.setContentsMargins(0,0,0,0)
 
-        self.user_label.setObjectName("user_label")
-        self.user_input.setObjectName("user_input")
-        self.pasw_label.setObjectName("pasw_label")
-        self.pasw_input.setObjectName("pasw_input")
-        self.welcome_label.setObjectName("welcome_label")
-        self.title_label.setObjectName("title_label")
-        self.subtitle_label.setObjectName("subtitle_label")
-        self.signin_button.setObjectName("signin_button")
+        self.login_screen.login_successful.connect(self.handle_login_success)
 
-        self.setStyleSheet("""
-            QLabel, QPushButton{
-                font-family: Arial
-            }
-            QLabel#title_label{
-                font-size: 30px;
-                font-weight: bold;
-            }
-            QLabel#subtitle_label{
-                font-size: 25px;
-            }
-            QLabel#user_label{
-                font-size: 20px;
-            }
-            QLineEdit#user_input{
-                font-size: 20px;
-            }
-            QLabel#pasw_label{
-                font-size: 20px;
-            }
-            QLineEdit#pasw_input{
-                font-size: 20px;
-            }
-        """)
+        self.student_screen.logout_button.clicked.connect(self.show_login_screen)
+        self.admin_screen.logout_button.clicked.connect(self.show_login_screen)
 
+        self.show_login_screen() 
 
-        self.signin_button.clicked.connect(self.sign_in)
-
-    def update_counter(self):
-        self.counter += 1
-        print(f"Reloj interno, Contador: {self.counter}")
-
-
-
-    def sign_in(self):
-        user = self.user_input.text()
-        passw = self.pasw_input.text()
-        self.tries -= 1
-        signed = False
-        trying = True
-
-
-
-        if user==teacher_user and passw==teacher_passw and self.tries>=1:
-            signed = True
-            is_teacher = True
-            trying = False
-            print("Teacher",user, passw)
-            self.welcome_label.setText(f"Bienvenido {user} al sistema de notas (profesor)")
-            self.signin_button.deleteLater()
-            self.user_label.deleteLater()
-            self.user_input.deleteLater()
-            self.pasw_label.deleteLater()
-            self.pasw_input.deleteLater()
-            self.title_label.deleteLater()
-            self.subtitle_label.deleteLater()
-            self.welcome_label.setAlignment(Qt.AlignCenter)
-
-
-        elif user==student_user and passw==student_passw and self.tries>=1:
-            signed = True
-            trying = False
-            print("Student", user, passw)
-            self.welcome_label.setText(f"Bienvenido {user} al sistema de notas (Estudiante)")
-
-
-
-        elif self.tries>=0:
-            trying  = False
-            print("Clave y/o usuario invalido/a")
-            print("Le quedan", self.tries, "intentos")
-            self.welcome_label.setText(f"Clave y/o usuario invalido/a, Le quedan {self.tries} intentos ")
+    def handle_login_success(self, role):
+        print(f"Login de: {role}")
+        if role == "admin":
+            self.stacked_widget.setCurrentIndex(self.admin_screen_index)
+            self.setWindowTitle("Aplicacion Escolar - Tablero del admin")
+            self.resize(600, 500) 
+        elif role == "student":
+            self.stacked_widget.setCurrentIndex(self.student_screen_index)
+            self.setWindowTitle("Aplicacion Escolar - Tablero del estudiante")
+            self.resize(450, 350)
         else:
-            print("Intentos maximos superados")
-            self.welcome_label.setText(f"Intentos maximos alcanzados, espere 1 minuto para volver a intentar")
-            self.timer.start()
-            if self.counter >= 3:
-                self.timer.stop()
-                self.tries = 3
-                self.welcome_label.setText(f"Clave y/o usuario invalido/a, Le quedan {self.tries} intentos ")
-                
-
-                
-    def stop_repeating_timer(self):
-        if self.timer.isActive():
-            self.timer.stop()
-            print("Repeating timer stopped.")
-                
-        
-        
-        
-
-    def closeEvent(self, event):
-        print("Deteniendo reloj interno.")
-        self.stop_repeating_timer()
-        event.accept()
+            QMessageBox.error(self, "Error", f"Rol desconocido: {role}")
+            self.show_login_screen()
 
 
+    def show_login_screen(self):
+        self.login_screen.reset_login_state()
+        self.stacked_widget.setCurrentIndex(self.login_screen_index)
+        self.setWindowTitle("Aplicacion Escolar - Inicio de sesion")
+        self.resize(500, 400) 
 
 
-
-
-    def sistema_notas_profe(self):
-        print ("alo (profe)")
-
-
-
-
-
-
-
-    def sistema_notas_student(self):
-        print("olo (estudiante)")
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = Promediador()
-    window.show()
-    sys.exit(app.exec_())
-
-
-
-
-
-# for i in range (0, 3):
-#     if tries<3:
-#         user = str(input("Ingrese usuario: "))
-#         passw = str(input("Ingrese la contraseña: "))
-#         if user==tuser and passw==tpassw:
-#             print("Bienvenido al sistema", user, ".")
-#             signed= int(1)
-#             break
-#         else:
-#             tries += 1
-#             print("Clave invalida")
-
-
-
-
-# if signed==1:
-#     hora = time.localtime
-#     print("Hora Actual:", hora)
-
+    main_window = MainWindow()
+    main_window.show()
+    sys.exit(app.exec())
