@@ -1,38 +1,40 @@
-# voto = int(0)
-# op1 = int(0)
-# p1 = str("Piñera")
-# op2 = int(0)
-# p2 = str("Bachelet")
-# op3 = int(0)
-# p3 = str("Nulo")
-# win = int(1)
-# winner = str("Nadie")
-# votantes = int(input("Ingrese numero de votantes: "))
 
-# for i in range (0, votantes):
-#     voto = int(input("1. Piñera, 2. Bachelet, Cualquier otra opcion cuenta como nulo: "))
-#     if voto == 1:
-#         op1 +=1
-#     elif voto == 2:
-#         op2 +=1
-#     else:
-#         op3 +=1
+def votaciones():
+    voto = int(0)
+    op1 = int(0)
+    p1 = str("Piñera")
+    op2 = int(0)
+    p2 = str("Bachelet")
+    op3 = int(0)
+    p3 = str("Nulo")
+    win = int(1)
+    winner = str("Nadie")
+    votantes = int(input("Ingrese numero de votantes: "))
 
-# if op1>op2:
-#     winner = p1
-# elif op1<op2:
-#     winner = p2
-# elif op1==op2:
-#     win = 0
+    for i in range (0, votantes):
+        voto = int(input("1. Piñera, 2. Bachelet, Cualquier otra opcion cuenta como nulo: "))
+        if voto == 1:
+            op1 +=1
+        elif voto == 2:
+            op2 +=1
+        else:
+            op3 +=1
 
-# print("Fin de las elecciones")
-# print("La cantidad de votos totales es:", votantes)
-# if win==0:
-#     print("Las elecciones terminaron en empate")
-# else:
-#     print("El ganador de las elecciones fue:", winner)
+    if op1>op2:
+        winner = p1
+    elif op1<op2:
+        winner = p2
+    elif op1==op2:
+        win = 0
 
-# print("La cantidad de votos nulos fue:", op3)
+    print("Fin de las elecciones")
+    print("La cantidad de votos totales es:", votantes)
+    if win==0:
+        print("Las elecciones terminaron en empate")
+    else:
+        print("El ganador de las elecciones fue:", winner)
+
+    print("La cantidad de votos nulos fue:", op3)
 
 #----------------------------------------------------------------------------
 
@@ -401,4 +403,77 @@
 #----------------------------------------------------------------------------
 
 
+def suma():
+    n1=int(input("Ingrese el primer numero: "))
+    n2=int(input("Ingrese el segundo numero: "))
+    print(f"El resultado de la suma es: {n1+n2} ")
 
+def resta():
+    n1=int(input("Ingrese el primer numero: "))
+    n2=int(input("Ingrese el segundo numero: "))
+    print(f"El resultado de la resta es: {n1-n2} ")
+
+def multiplicar():
+    n1=int(input("Ingrese el primer numero: "))
+    n2=int(input("Ingrese el segundo numero: "))
+    print(f"El resultado de la multiplicacion es: {n1*n2} ")
+
+def dividir():
+    n1=int(input("Ingrese el primer numero: "))
+    n2=int(input("Ingrese el segundo numero: "))
+    print(f"El resultado de la division es: {n1/n2} ")
+    
+
+
+def calc():
+    while True:
+        op = int(input('''Seleccionar opcion:
+                    1. suma
+                    2. resta
+                    3. multiplicar
+                    4. dividir
+                    5. Salir
+                    '''))
+
+        match op:
+            case 1:
+                print("suma")
+                suma()
+
+            case 2:
+                print("resta")
+                resta()
+
+            case 3:
+                print("multiplicar")
+                multiplicar()
+            case 4:
+                print("Dividir")
+                try:
+                    dividir()
+                except ZeroDivisionError as Division_cero:
+                    print(f"Se produjo un error: {Division_cero}")
+                
+            case 5:
+                print("Saliendo")
+                break
+            case _:
+                print("Invalido")
+
+
+while True:
+    print("Bienvenido al menu")
+    menu=int(input('''Seleccione una opcion:
+                   1. Calculadora
+                   2. Contador de votos
+                   '''))
+
+    match menu:
+        case 1:
+            print("Ingresando a calculadora")
+            calc()
+
+        case 2:
+            print("Ingresando a Contador de votos")
+
+            
