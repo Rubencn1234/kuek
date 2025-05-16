@@ -1,40 +1,40 @@
 
-def votaciones():
-    voto = int(0)
-    op1 = int(0)
-    p1 = str("Piñera")
-    op2 = int(0)
-    p2 = str("Bachelet")
-    op3 = int(0)
-    p3 = str("Nulo")
-    win = int(1)
-    winner = str("Nadie")
-    votantes = int(input("Ingrese numero de votantes: "))
+# def votaciones():
+#     voto = int(0)
+#     op1 = int(0)
+#     p1 = str("Piñera")
+#     op2 = int(0)
+#     p2 = str("Bachelet")
+#     op3 = int(0)
+#     p3 = str("Nulo")
+#     win = int(1)
+#     winner = str("Nadie")
+#     votantes = int(input("Ingrese numero de votantes: "))
 
-    for i in range (0, votantes):
-        voto = int(input("1. Piñera, 2. Bachelet, Cualquier otra opcion cuenta como nulo: "))
-        if voto == 1:
-            op1 +=1
-        elif voto == 2:
-            op2 +=1
-        else:
-            op3 +=1
+#     for i in range (0, votantes):
+#         voto = int(input("1. Piñera, 2. Bachelet, Cualquier otra opcion cuenta como nulo: "))
+#         if voto == 1:
+#             op1 +=1
+#         elif voto == 2:
+#             op2 +=1
+#         else:
+#             op3 +=1
 
-    if op1>op2:
-        winner = p1
-    elif op1<op2:
-        winner = p2
-    elif op1==op2:
-        win = 0
+#     if op1>op2:
+#         winner = p1
+#     elif op1<op2:
+#         winner = p2
+#     elif op1==op2:
+#         win = 0
 
-    print("Fin de las elecciones")
-    print("La cantidad de votos totales es:", votantes)
-    if win==0:
-        print("Las elecciones terminaron en empate")
-    else:
-        print("El ganador de las elecciones fue:", winner)
+#     print("Fin de las elecciones")
+#     print("La cantidad de votos totales es:", votantes)
+#     if win==0:
+#         print("Las elecciones terminaron en empate")
+#     else:
+#         print("El ganador de las elecciones fue:", winner)
 
-    print("La cantidad de votos nulos fue:", op3)
+#     print("La cantidad de votos nulos fue:", op3)
 
 #----------------------------------------------------------------------------
 
@@ -403,77 +403,108 @@ def votaciones():
 #----------------------------------------------------------------------------
 
 
-def suma():
-    n1=int(input("Ingrese el primer numero: "))
-    n2=int(input("Ingrese el segundo numero: "))
-    print(f"El resultado de la suma es: {n1+n2} ")
+# def suma():
+#     n1=int(input("Ingrese el primer numero: "))
+#     n2=int(input("Ingrese el segundo numero: "))
+#     print(f"El resultado de la suma es: {n1+n2} ")
 
-def resta():
-    n1=int(input("Ingrese el primer numero: "))
-    n2=int(input("Ingrese el segundo numero: "))
-    print(f"El resultado de la resta es: {n1-n2} ")
+# def resta():
+#     n1=int(input("Ingrese el primer numero: "))
+#     n2=int(input("Ingrese el segundo numero: "))
+#     print(f"El resultado de la resta es: {n1-n2} ")
 
-def multiplicar():
-    n1=int(input("Ingrese el primer numero: "))
-    n2=int(input("Ingrese el segundo numero: "))
-    print(f"El resultado de la multiplicacion es: {n1*n2} ")
+# def multiplicar():
+#     n1=int(input("Ingrese el primer numero: "))
+#     n2=int(input("Ingrese el segundo numero: "))
+#     print(f"El resultado de la multiplicacion es: {n1*n2} ")
 
-def dividir():
-    n1=int(input("Ingrese el primer numero: "))
-    n2=int(input("Ingrese el segundo numero: "))
-    print(f"El resultado de la division es: {n1/n2} ")
+# def dividir():
+#     n1=int(input("Ingrese el primer numero: "))
+#     n2=int(input("Ingrese el segundo numero: "))
+#     print(f"El resultado de la division es: {n1/n2} ")
     
 
 
-def calc():
-    while True:
-        op = int(input('''Seleccionar opcion:
-                    1. suma
-                    2. resta
-                    3. multiplicar
-                    4. dividir
-                    5. Salir
-                    '''))
+# def calc():
+#     while True:
+#         op = int(input('''Seleccionar opcion:
+#                     1. suma
+#                     2. resta
+#                     3. multiplicar
+#                     4. dividir
+#                     5. Salir
+#                     '''))
 
-        match op:
-            case 1:
-                print("suma")
-                suma()
+#         match op:
+#             case 1:
+#                 print("suma")
+#                 suma()
 
-            case 2:
-                print("resta")
-                resta()
+#             case 2:
+#                 print("resta")
+#                 resta()
 
-            case 3:
-                print("multiplicar")
-                multiplicar()
-            case 4:
-                print("Dividir")
-                try:
-                    dividir()
-                except ZeroDivisionError as Division_cero:
-                    print(f"Se produjo un error: {Division_cero}")
+#             case 3:
+#                 print("multiplicar")
+#                 multiplicar()
+#             case 4:
+#                 print("Dividir")
+#                 try:
+#                     dividir()
+#                 except ZeroDivisionError as Division_cero:
+#                     print(f"Se produjo un error: {Division_cero}")
                 
-            case 5:
-                print("Saliendo")
-                break
-            case _:
-                print("Invalido")
+#             case 5:
+#                 print("Saliendo")
+#                 break
+#             case _:
+#                 print("Invalido")
 
 
-while True:
-    print("Bienvenido al menu")
-    menu=int(input('''Seleccione una opcion:
-                   1. Calculadora
-                   2. Contador de votos
-                   '''))
+# while True:
+#     print("Bienvenido al menu")
+#     menu=int(input('''Seleccione una opcion:
+#                    1. Calculadora
+#                    2. Contador de votos
+#                    '''))
 
-    match menu:
-        case 1:
-            print("Ingresando a calculadora")
-            calc()
+#     match menu:
+#         case 1:
+#             print("Ingresando a calculadora")
+#             calc()
 
-        case 2:
-            print("Ingresando a Contador de votos")
+#         case 2:
+#             print("Ingresando a Contador de votos")
 
-            
+#----------------------------------------------------------------------------
+
+sub_prom = float(0)
+prom = float(0)
+prom_seccion = float(0)
+n_actual = 0
+a_actual = 0
+a_aprueban = int(0)
+a_reprueban = int(0)
+print("Bienvenido al sistema de notas")
+n_alumnos = int(input("Ingrese la cantidad de alumnos de la sección: "))
+while a_actual < n_alumnos:
+    for h in  range (0, n_alumnos):
+        n_notas = int(input(f"Ingrese la cantidad de notas del alumno {h+1}: "))
+        for i in range (0, n_notas):
+            sub_prom += float(input(f"Ingrese la nota {i+1} del alumno {h+1}: "))
+            prom = sub_prom/(i+1)
+
+        prom_seccion += prom
+        print(f"El promedio del alumno {h+1} es de: {prom}")
+        if prom < 4:
+            print(f"El alumno {h+1} reprobo con un: {prom}")
+            a_reprueban += 1
+
+        else:
+            print(f"El alumno {h+1} aprobo con un: {prom}")
+            a_aprueban += 1
+        prom = 0
+
+print(f"El promedio de la seccion fue de: {prom_seccion}")
+print(f"La cantidad de alumnos que aprobaron fue de: {a_aprueban} ")
+print(f"La cantidad de alumnos que reprobo fue de: {a_reprueban}")
