@@ -478,33 +478,141 @@
 
 #----------------------------------------------------------------------------
 
-sub_prom = float(0)
-prom = float(0)
-prom_seccion = float(0)
-n_actual = 0
-a_actual = 0
-a_aprueban = int(0)
-a_reprueban = int(0)
-print("Bienvenido al sistema de notas")
-n_alumnos = int(input("Ingrese la cantidad de alumnos de la sección: "))
-while a_actual < n_alumnos:
-    for h in  range (0, n_alumnos):
-        n_notas = int(input(f"Ingrese la cantidad de notas del alumno {h+1}: "))
-        for i in range (0, n_notas):
-            sub_prom += float(input(f"Ingrese la nota {i+1} del alumno {h+1}: "))
-            prom = sub_prom/(i+1)
+# sub_prom = float(0)
+# prom = float(0)
+# prom_seccion = float(0)
+# n_actual = 0
+# a_actual = 0
+# a_aprueban = int(0)
+# a_reprueban = int(0)
+# print("Bienvenido al sistema de notas")
+# n_alumnos = int(input("Ingrese la cantidad de alumnos de la sección: "))
+# while a_actual < n_alumnos:
+#     for h in  range (0, n_alumnos):
+#         n_notas = int(input(f"Ingrese la cantidad de notas del alumno {h+1}: "))
+#         for i in range (0, n_notas):
+#             sub_prom += float(input(f"Ingrese la nota {i+1} del alumno {h+1}: "))
+#             prom = sub_prom/(i+1)
 
-        prom_seccion += prom
-        print(f"El promedio del alumno {h+1} es de: {prom}")
-        if prom < 4:
-            print(f"El alumno {h+1} reprobo con un: {prom}")
-            a_reprueban += 1
+#         prom_seccion += prom
+#         print(f"El promedio del alumno {h+1} es de: {prom}")
+#         if prom < 4:
+#             print(f"El alumno {h+1} reprobo con un: {prom}")
+#             a_reprueban += 1
 
-        else:
-            print(f"El alumno {h+1} aprobo con un: {prom}")
-            a_aprueban += 1
-        prom = 0
+#         else:
+#             print(f"El alumno {h+1} aprobo con un: {prom}")
+#             a_aprueban += 1
+#         prom = 0
 
-print(f"El promedio de la seccion fue de: {prom_seccion}")
-print(f"La cantidad de alumnos que aprobaron fue de: {a_aprueban} ")
-print(f"La cantidad de alumnos que reprobo fue de: {a_reprueban}")
+# print(f"El promedio de la seccion fue de: {prom_seccion}")
+# print(f"La cantidad de alumnos que aprobaron fue de: {a_aprueban} ")
+# print(f"La cantidad de alumnos que reprobo fue de: {a_reprueban}")
+
+#----------------------------------------------------------------------------
+
+# import random
+
+# dog_count = int(0)
+# bunny = int(0)
+# bunny_cuota = int(3)
+# awarded = int(0)
+# not_awarded = int(0)
+# success_rate = float(0)
+
+# while True:
+#     try: 
+#         dog_count = int(input("Ingrese la cantidad de perros que van a cazar: "))
+#         while dog_count<1:
+#             print("Solo ingrese numeros enteros positivos")
+#             dog_count = int(input("Ingrese la cantidad de perros que van a cazar: "))
+#         for i in range (1, dog_count + 1):
+#             bunny = random.randint (0,6)
+#             if bunny >= bunny_cuota:
+#                 print(f"El perro {i} tiene premio")
+#                 awarded += 1
+
+#             else:
+#                 print(f"El perro {i} no tiene premio")
+#                 not_awarded += 1
+
+#         print(f"{awarded} perros cumplieron la cuota y merecen premio")
+#         print(f"{not_awarded} perros no cumplieron la cuota y requieren confinamiento solitario")
+#         success_rate = (dog_count/100)*awarded  
+#         print(f"La tasa de exito de los perros fue de: {success_rate}%")
+#         break
+#     except Exception as Error:
+#         print("Ingrese solo numeros enteros positivos")
+
+#----------------------------------------------------------------------------
+
+import time
+import random
+
+cars = int(0)
+full_wash = int(0)
+standard_wash = int(0)
+basic_wash = int(0)
+sales = int(0)
+income = int(0)
+highest_payment = int(0, )
+menu = int(0)
+menu_2 = int(0)
+
+while True:
+    menu = int(input('''----------------------------------------------------------------------------
+                     Bienvenido al autolavado, Seleccione una opción:
+                     1. Cursar pago del lavado
+                     2. Ver ventas diarias
+                     3. Salir
+                     '''))
+    match menu:
+        case 1:
+            print("----------------------------------------------------------------------------")
+            print('''Precios: 
+                  1. Servicio Full: $15.000
+                  2. Servicio Standard: $10.000
+                  3. Servicio Basico: $7.000
+                  ----------------------------------------------------------------------------''')
+            menu_2 = int(input("Seleccione el servicio: "))
+            match menu_2:
+                case 1:
+                    print("Servicio Full")
+                    income += 15000
+                    cars += 1
+                    if 15000 > highest_payment:
+                        highest_payment = 15000
+                    print("Lavando auto...")
+                    time.sleep (2)
+
+                case 2:
+                    print("Servicio Standard")
+                    income += 10000
+                    cars += 1
+                    if 10000 > highest_payment:
+                        highest_payment = 10000
+                    print("Lavando auto...")
+                    time.sleep (2)
+
+                case 3:
+                    print("Servicio Basico")
+                    income += 7000
+                    cars += 1
+                    if 7000 > highest_payment:
+                        highest_payment = 7000
+                    print("Lavando auto...")
+                    time.sleep (2)
+
+        case 2:
+            print("----------------------------------------------------------------------------")
+            print(f'''Resumen Financiero:
+Autos Lavados: {cars}
+Ingresos: ${income}
+Venta mas alta: ${highest_payment}
+----------------------------------------------------------------------------''')
+
+        case 3:
+            print("----------------------------------------------------------------------------")
+            print("Saliendo...")
+            time.sleep (2)
+            break
