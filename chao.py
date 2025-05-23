@@ -546,73 +546,181 @@
 
 #----------------------------------------------------------------------------
 
-import time
-import random
+# import time
+# import random
 
-cars = int(0)
-full_wash = int(0)
-standard_wash = int(0)
-basic_wash = int(0)
-sales = int(0)
-income = int(0)
-highest_payment = int(0, )
-menu = int(0)
-menu_2 = int(0)
+# cars = int(0)
+# full_wash = int(0)
+# standard_wash = int(0)
+# basic_wash = int(0)
+# sales = int(0)
+# income = int(0)
+# highest_payment = int(0, )
+# menu = int(0)
+# menu_2 = int(0)
+
+# while True:
+#     menu = int(input('''----------------------------------------------------------------------------
+#                      Bienvenido al autolavado, Seleccione una opción:
+#                      1. Cursar pago del lavado
+#                      2. Ver ventas diarias
+#                      3. Salir
+#                      '''))
+#     match menu:
+#         case 1:
+#             print("----------------------------------------------------------------------------")
+#             print('''Precios: 
+#                   1. Servicio Full: $15.000
+#                   2. Servicio Standard: $10.000
+#                   3. Servicio Basico: $7.000
+#                   ----------------------------------------------------------------------------''')
+#             menu_2 = int(input("Seleccione el servicio: "))
+#             match menu_2:
+#                 case 1:
+#                     print("Servicio Full")
+#                     income += 15000
+#                     cars += 1
+#                     if 15000 > highest_payment:
+#                         highest_payment = 15000
+#                     print("Lavando auto...")
+#                     time.sleep (2)
+
+#                 case 2:
+#                     print("Servicio Standard")
+#                     income += 10000
+#                     cars += 1
+#                     if 10000 > highest_payment:
+#                         highest_payment = 10000
+#                     print("Lavando auto...")
+#                     time.sleep (2)
+
+#                 case 3:
+#                     print("Servicio Basico")
+#                     income += 7000
+#                     cars += 1
+#                     if 7000 > highest_payment:
+#                         highest_payment = 7000
+#                     print("Lavando auto...")
+#                     time.sleep (2)
+
+#         case 2:
+#             print("----------------------------------------------------------------------------")
+#             print(f'''Resumen Financiero:
+# Autos Lavados: {cars}
+# Ingresos: ${income}
+# Venta mas alta: ${highest_payment}
+# ----------------------------------------------------------------------------''')
+
+#         case 3:
+#             print("----------------------------------------------------------------------------")
+#             print("Saliendo...")
+#             time.sleep (2)
+#             break
+
+
+#----------------------------------------------------------------------------
+
+import random, time
+
+tries = 0
+max_tries = 3
+cupo = int(200000)
+deuda = int(100000)
+saldo = int(500000)
+ahorro = int(5000000)
+deposito = int(0)
+retiro = int(0)
+pago = int(0)
+s_user = int(20512096)
+s_passw = int(1234)
+signed = False
 
 while True:
-    menu = int(input('''----------------------------------------------------------------------------
-                     Bienvenido al autolavado, Seleccione una opción:
-                     1. Cursar pago del lavado
-                     2. Ver ventas diarias
-                     3. Salir
-                     '''))
-    match menu:
-        case 1:
-            print("----------------------------------------------------------------------------")
-            print('''Precios: 
-                  1. Servicio Full: $15.000
-                  2. Servicio Standard: $10.000
-                  3. Servicio Basico: $7.000
-                  ----------------------------------------------------------------------------''')
-            menu_2 = int(input("Seleccione el servicio: "))
-            match menu_2:
-                case 1:
-                    print("Servicio Full")
-                    income += 15000
-                    cars += 1
-                    if 15000 > highest_payment:
-                        highest_payment = 15000
-                    print("Lavando auto...")
-                    time.sleep (2)
-
-                case 2:
-                    print("Servicio Standard")
-                    income += 10000
-                    cars += 1
-                    if 10000 > highest_payment:
-                        highest_payment = 10000
-                    print("Lavando auto...")
-                    time.sleep (2)
-
-                case 3:
-                    print("Servicio Basico")
-                    income += 7000
-                    cars += 1
-                    if 7000 > highest_payment:
-                        highest_payment = 7000
-                    print("Lavando auto...")
-                    time.sleep (2)
-
-        case 2:
-            print("----------------------------------------------------------------------------")
-            print(f'''Resumen Financiero:
-Autos Lavados: {cars}
-Ingresos: ${income}
-Venta mas alta: ${highest_payment}
-----------------------------------------------------------------------------''')
-
-        case 3:
-            print("----------------------------------------------------------------------------")
-            print("Saliendo...")
+    while tries <= max_tries:
+        print("Bienvenido al pago de deudas de su tarjeta masterplop")
+        user = int(input("Ingrese su usuario: "))
+        passw = int(input("Ingrese su pin numerico: "))
+        while user == s_user and passw == s_passw:
+            print("Datos correctos, Cargando sistema.")
+            signed = True
             time.sleep (2)
-            break
+            while signed == True:
+                op2 = int(input(f'''Seleccione un producto:
+                    1. Tarjeta de credito
+                    2. Cuenta Corriente
+                    3. Cuenta de ahorro
+                    4. Cerrar sesión'''))
+                match op2:
+
+                    case 1:
+                        print("----Tarjeta de Credito----")
+                        print(f"Cupo total: ${cupo}")
+                        print(f"Cupo restante: ${cupo-deuda}")
+                        print(f"Deuda Pendiente: ${deuda}")
+                        print("")
+                        op3 = int(input(f'''Seleccione una opción:
+                            1. Pagar (deuda restante: {deuda})
+                            2. Volver al menu'''))
+                        if op3 == 1:
+                            print(f"El saldo de su cuenta corriente es de: ${saldo}")
+                            pago = int(input("Ingrese el monto que quiere pagar de su tarjeta: "))
+                            if pago <=0:
+                                print("Ingrese un monto valido de pago")
+                                pago = int(input("Ingrese el monto que quiere pagar de su tarjeta: "))
+                            else:
+                                op4 = input('''Escriba "confirmo" para confirmar el pago de su tarjeta de credito: ''')
+                                if op4 == "confirmo":
+                                    deuda = deuda - pago
+                                    saldo = saldo - pago
+                                    print(f"La deuda de su tarjeta a sido pagada correctamente, su deuda a quedado en: ${deuda}")
+                                    print(f"El saldo restante en su cuenta corriente es de: ${saldo}")
+
+
+                                else:
+                                    break
+
+                    case 2:
+                        print("----Cuenta Corriente----")
+                        print(f"Saldo Actual: ${saldo}")
+                        op5 = int(input('''Seleccione una opción:
+                                        1. Ver la ultima compra
+                                        2. Volver al menu'''))
+
+
+
+
+                    case 3:
+                        print("----Cuenta de Ahorro----")
+                        print(f"Saldo Actual: ${ahorro}")
+                        op6 = int(input('''Seleccione una opción: 
+                        1. Depositar monto
+                        2. Retirar monto
+                        3. Volver al menu'''))
+
+                        match op6:
+                            case 1:
+                                deposito = int(input("Ingrese un monto a depositar: "))
+                                if deposito <=0:
+                                    deposito = int(input("Ingrese un monto valido a depositar: "))
+                                    ahorro += deposito
+                                    print(f"El saldo de su cuenta de ahorro es: ${ahorro}")
+
+
+                            case 2:
+                                retiro = int(input("Ingrese el monto a retirar: "))
+                                if retiro <= 0:
+                                    retiro = int(input("Ingrese un monto valido a retirar: "))
+                                    ahorro = ahorro - retiro
+                                    print(f"El saldo de su cuenta de ahorro es: ${ahorro}")
+
+
+                            case 3:
+                                print("Volviendo al menu...")
+                                time.sleep (2)
+                                break
+
+
+
+        else:
+            print("Datos incorrectos, intente nuevamente")
+            tries +=1
