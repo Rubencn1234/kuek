@@ -729,19 +729,23 @@
 
 #----------------------------------------------------------------------------
 
-with open('texto.txt', 'w') as writer:
-    for aloooo in range (1, 5):
-            writer.write('''
-1
-2
-3
-4
-5
-''')
+import random
+# with open('texto.txt', 'w') as writer:
+#     for aloooo in range (1, 5):
+#             writer.write('''
+# 1
+# 2
+# 3
+# 4
+# 5
+# ''')
+
+notas = []
 
 
+for i in range (1,4):
+
+    notas = random.randint(10, 70)
 
 
-
-
-
+print(notas)
