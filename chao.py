@@ -729,23 +729,110 @@
 
 #----------------------------------------------------------------------------
 
-import random
-# with open('texto.txt', 'w') as writer:
-#     for aloooo in range (1, 5):
-#             writer.write('''
-# 1
-# 2
-# 3
-# 4
-# 5
-# ''')
+# import random
+# # with open('texto.txt', 'w') as writer:
+# #     for aloooo in range (1, 5):
+# #             writer.write('''
+# # 1
+# # 2
+# # 3
+# # 4
+# # 5
+# # ''')
 
-notas = []
-
-
-for i in range (1,4):
-
-    notas = random.randint(10, 70)
+# notas = []
 
 
-print(notas)
+# for i in range (1,4):
+
+#     notas = random.randint(10, 70)
+
+
+# print(notas)
+
+#----------------------------------------------------------------------------
+import time
+from os import system
+
+lista = ['a', 'b', 'c','d']
+op1 = int
+op2 = int
+p_totales = len(lista)
+p_eliminados = int(0)
+p_added = int(0)
+p_last_added = int
+
+def add_product():
+    system("cls")
+    print(f"Numero actual de productos: {p_totales}")
+    lista.append(input("Producto a añadir: "))
+    p_added += 1
+    p_last_added = lista[p_totales]
+    print(f'''Se a añadido el producto "{p_last_added}" ''')
+    print("Volviendo al menu...")
+    time.sleep(1)
+    menu()
+
+def delete_product():
+    system("cls")
+    print(f"Productos actuales: {lista}")
+    print(f"Productos totales: {p_totales+1}")
+    op2 = int(input("Ingrese el producto que desea eliminar: "))
+    if op2 < p_totales+1 or op2 > p_totales+1:
+        print("No existe ese producto, Intente nuevamente.")
+        print("Volviendo al menu...")
+        time.sleep(1)
+        menu()
+
+    lista.pop(op2-1)
+    p_eliminados += 1
+    print(f"Se a eliminado exitosamente el producto {op2}")
+    print(f"Productos actuales: {lista}")
+    print("Volviendo al menu...")
+    time.sleep(2)
+    menu()
+
+
+def ver_productos():
+    system("cls")
+    print(f"Productos actuales: {lista}")
+    print("Volviendo al menu...")
+    time.sleep(1)
+    menu()
+
+
+
+
+def menu():
+    print('''Seleccione una opcion:
+        1. Añadir un producto
+        2. Eliminar un producto
+        3. Ver todos los productos
+        4. Salir''')
+    try:
+        op1 = int(input("Ingrese una opción: "))
+        match op1:
+            case 1:
+                print("Cargando...")
+                time.sleep(1)
+                add_product()
+
+            case 2:
+                print("Cargando...")
+                time.sleep(1)
+                delete_product()
+
+            case 3:
+                print("Cargando...")
+                time.sleep(1)
+                ver_productos()
+
+            case 4:
+                print("Saliendo...")
+                time.sleep(1)
+    except Exception as Error:
+        print(f"Ocurrio un error inesperado: {Error}")
+        print("Intente nuevamente.")
+        menu()
+
+menu()
