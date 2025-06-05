@@ -16,6 +16,8 @@ actual_2 = ""
 h = 0
 students = ['Alicia Perez', 'Bodoque Contreras', 'Carlos Jara', 'Diego Montes', 'Elena Reyes', 'Felipe Parra', 'Guillermo Olmedo', 'Hugo Muños', 'Ivan Rojas', 'Juan Perez', 'Kevin Diaz', 'Manuel Soto', 'Nicolas Silva'] 
 student_count = len(students)
+ausentes = 0
+presentes = 0
 
 student_1 = "Alicia Perez"
 student_2 = "Bodoque Contreras"
@@ -93,7 +95,7 @@ def status():
 
 
 def asistance():
-    global logged, student_count, students
+    global logged, student_count, students, presentes, ausentes, porc_asistencia
     while logged == True:
         print(f"-----Pasando Lista-----")
         print(f'''Ingrese "s" para confirmar asistencia, ingrese "n" para confirmar inasistencia.''')
@@ -102,10 +104,20 @@ def asistance():
             if asistencia == "s":
                 print(f"{students[i]} esta presente")
                 exec(f'''student_asistencia_{i+1}.append("True") ''')
+                presentes += 1
 
             elif asistencia == "n":
                 print(f"{students[i]} esta ausente")
                 exec(f'''student_asistencia_{i+1}.append("False")''')
+                ausentes += 1
+
+        porc_asistencia =  (presentes / student_count) * 100
+        print(f"Porcentaje de asistencia: {round(porc_asistencia, 1)}%")
+        print(f"Presentes: {presentes}")
+        print(f"Ausentes: {ausentes}")
+        print("Volviendo al menu...")
+        time.sleep(2)
+        teacher_menu()
 
 
 def see_grades():
@@ -172,9 +184,8 @@ def teacher_menu():
     while logged == True:
         print(f"Cantidad de estudiantes: {student_count}")
         print(f"Promedio de la clase: {class_prom}")
-        print(f"Porcentaje de la seccion que aprueba: ")
         print('''Seleccione una opción:
-            1. Ver Asistencia
+            1. Pasar Asistencia
             2. Ver Calificaciones
             3. Modificar Calificaciones
             4. Ver Anotaciones
@@ -193,6 +204,13 @@ def teacher_menu():
             case 3:
                 print("Cargando Calificaciones...")
                 edit_grades()
+
+            case 4:
+                print
+
+            case 5:
+                print("Saliendo...")
+                login()
 
 
 
@@ -214,6 +232,10 @@ def student_menu():
         print(f"Tu promedio es de: {student_prom_3}")
         print(f"Tus Calificaciones son: {student_grades_3}")
         print(f"Tu porcentaje de asistencia es de: ")
+        input("")
+        print("Saliendo...")
+        time.sleep(2)
+        login()
 
 
 
@@ -224,39 +246,64 @@ def student_menu():
 
 
 
-user = str(input("Ingrese su usuario: "))
-passwd = int(input("Ingrese su contraseña: "))
-if user == t_user and passwd == t_passwd:
-        logged = True
-        has_logged = True
-        while logged == True:
+def login():
+    print("--------Bienvenido al sistema de notas y asistencia.--------")
+    user = str(input("Ingrese su usuario: "))
+    try:
+        passwd = int(input("Ingrese su contraseña: "))
+    except ValueError:
+        print("Error, la contraseña es un numero. Intente nuevamente.")
+        login()
+    if user == t_user and passwd == t_passwd:
+            logged = True
+            has_logged = True
+            while logged == True:
+                teacher = True
+                print(f"Sesión iniciada como el profesor {t_name}")
+                print("Cargando menu...")
+                time.sleep (2)
+                teacher_menu()
+
+    elif user == s_user and passwd == s_passwd:
+            logged = True
+            student = True
+            print(f"Sesión iniciada como el estudiante {s_name}")
+            print("Cargando menu...")
+            time.sleep (2)
+            student_menu()
+
+    else:
+        print("Usuario y/o contraseña no validos, vuelva a intentar.")
+        logged = False
+        has_logged = False
+
+
+
+
+def login_again():
+    while logged == False and has_logged == False:
+        print("Contraseña y/o usuario incorrecto/s")
+        user = str(input("Ingrese su usuario: "))
+        try:
+            passwd = int(input("Ingrese su contraseña: ")) 
+        except ValueError:
+            print("Error, la contraseña es un numero. Intente nuevamente.")
+            login()
+        if user == t_user and passwd == t_passwd:
+            logged = True
             teacher = True
             print(f"Sesión iniciada como el profesor {t_name}")
             print("Cargando menu...")
             time.sleep (2)
             teacher_menu()
 
+        elif user == s_user and passwd == s_passwd:
+            logged = True
+            student = True
+            print(f"Sesión iniciada como el estudiante {s_name}")
+            print("Cargando menu...")
+            time.sleep (2)
+            student_menu()
 
 
-
-while logged == False and has_logged == False:
-    print("Contraseña y/o usuario incorrecto/s")
-    user = str(input("Ingrese su usuario: "))
-    passwd = int(input("Ingrese su contraseña: ")) 
-    if user == t_user and passwd == t_passwd:
-        logged = True
-        teacher = True
-        print(f"Sesión iniciada como el profesor {t_name}")
-        print("Cargando menu...")
-        time.sleep (2)
-        teacher_menu()
-
-    elif user == s_user and passwd == s_passwd:
-        logged = True
-        student = True
-        print(f"Sesión iniciada como el estudiante {s_name}")
-        print("Cargando menu...")
-        time.sleep (2)
-        student_menu()
-
-
+login()
