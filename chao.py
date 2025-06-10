@@ -751,88 +751,286 @@
 # print(notas)
 
 #----------------------------------------------------------------------------
-import time
-from os import system
+# import time
+# from os import system
 
-lista = ['a', 'b', 'c','d']
+# lista = ['a', 'b', 'c','d']
+# op1 = int
+# op2 = int
+# p_totales = len(lista)
+# p_eliminados = int(0)
+# p_added = int(0)
+# p_last_added = int
+
+# def add_product():
+#     system("cls")
+#     print(f"Numero actual de productos: {p_totales}")
+#     lista.append(input("Producto a añadir: "))
+#     p_added += 1
+#     p_last_added = lista[p_totales]
+#     print(f'''Se a añadido el producto "{p_last_added}" ''')
+#     print("Volviendo al menu...")
+#     time.sleep(1)
+#     menu()
+
+# def delete_product():
+#     system("cls")
+#     print(f"Productos actuales: {lista}")
+#     print(f"Productos totales: {p_totales+1}")
+#     op2 = int(input("Ingrese el producto que desea eliminar: "))
+#     if op2 < p_totales+1 or op2 > p_totales+1:
+#         print("No existe ese producto, Intente nuevamente.")
+#         print("Volviendo al menu...")
+#         time.sleep(1)
+#         menu()
+
+#     lista.pop(op2-1)
+#     p_eliminados += 1
+#     print(f"Se a eliminado exitosamente el producto {op2}")
+#     print(f"Productos actuales: {lista}")
+#     print("Volviendo al menu...")
+#     time.sleep(2)
+#     menu()
+
+
+# def ver_productos():
+#     system("cls")
+#     print(f"Productos actuales: {lista}")
+#     print("Volviendo al menu...")
+#     time.sleep(1)
+#     menu()
+
+
+
+
+# def menu():
+#     print('''Seleccione una opcion:
+#         1. Añadir un producto
+#         2. Eliminar un producto
+#         3. Ver todos los productos
+#         4. Salir''')
+#     try:
+#         op1 = int(input("Ingrese una opción: "))
+#         match op1:
+#             case 1:
+#                 print("Cargando...")
+#                 time.sleep(1)
+#                 add_product()
+
+#             case 2:
+#                 print("Cargando...")
+#                 time.sleep(1)
+#                 delete_product()
+
+#             case 3:
+#                 print("Cargando...")
+#                 time.sleep(1)
+#                 ver_productos()
+
+#             case 4:
+#                 print("Saliendo...")
+#                 time.sleep(1)
+#     except Exception as Error:
+#         print(f"Ocurrio un error inesperado: {Error}")
+#         print("Intente nuevamente.")
+#         menu()
+
+# menu()
+
+#----------------------------------------------------------------------------
+
+# import time
+
+
+# op1 = int
+# op2 = int
+# op3 = int
+# nombre_completo = str
+
+# nombres_completos = []
+# nombres = []
+# apellidos = []
+
+# def nom_ape():
+#     print("Ingreso de nombre y apellido (singular)")
+#     nombre_completo = str(input("Ingrese nombre y apellido: "))
+#     nombres_completos.append(nombre_completo)
+#     print(f"a {nombres_completos}")
+#     op2 = nombre_completo.split( )
+#     nombre = op2[0]
+#     apellido = op2[1]
+#     nombres.append(nombre)
+#     apellidos.append(apellido)
+#     print(f"El nombre ingresado es: {nombre}")
+#     print(f"El apellido ingresado es: {apellido}")
+#     print("Volviendo al menu...")
+#     time.sleep(1)
+#     menu()
+    
+
+# def see_nom_apes():
+#     print("Mostrando nombres y apellidos ingresados")
+#     print(f"Nombres: {nombres}")
+#     print(f"Apellidos: {apellidos}")
+#     print("Volviendo al menu...")
+#     time.sleep(1)
+#     menu()
+    
+
+# def search_nom_apes():
+#     print("Buscar nombre")
+#     op3 = str(input("Ingrese el nombre a buscar: "))
+#     if op3 in nombres:
+#         print(f"El nombre {op3} si se encontro en la lista")
+#     else:
+#         print(f"El nombre {op3} no se encontro en la lista")
+#     print("Volviendo al menu...")
+#     time.sleep(1)
+#     menu()
+
+
+
+# def menu():
+#     print('''Opciones:
+#         1.Ingresar nombre y apellido
+#         2.Mostrar nombres y apellidos
+#         3.Buscar nombre
+#         4.Salir
+#         ''')
+#     op1 = int(input("Seleccione una opcion: "))
+#     match op1:
+#         case 1:
+#             print("Cargando...")
+#             time.sleep(1)
+#             nom_ape()
+
+#         case 2:
+#             print("Cargando...")
+#             time.sleep(1)
+#             see_nom_apes()
+            
+
+#         case 3:
+#             print("Cargando...")
+#             time.sleep(1)
+#             search_nom_apes()
+
+#         case 4:
+#             print("Saliendo...")
+#             time.sleep(3)
+
+
+
+
+
+# menu()
+
+
+#----------------------------------------------------------------------------
+
+import time
+import random
+
 op1 = int
 op2 = int
-p_totales = len(lista)
-p_eliminados = int(0)
-p_added = int(0)
-p_last_added = int
+op3 = int
 
-def add_product():
-    system("cls")
-    print(f"Numero actual de productos: {p_totales}")
-    lista.append(input("Producto a añadir: "))
-    p_added += 1
-    p_last_added = lista[p_totales]
-    print(f'''Se a añadido el producto "{p_last_added}" ''')
-    print("Volviendo al menu...")
-    time.sleep(1)
-    menu()
+stock = [10, 10, 10, 20, 20, 20, 10, 5]
+stock_nom = ['Manzanas', 'Peras', 'Naranjas', 'Harina', 'Arroz', 'Atun', 'Coca-cola', 'Cinta-Adesiva']
+carrito = []
+boleta = []
 
-def delete_product():
-    system("cls")
-    print(f"Productos actuales: {lista}")
-    print(f"Productos totales: {p_totales+1}")
-    op2 = int(input("Ingrese el producto que desea eliminar: "))
-    if op2 < p_totales+1 or op2 > p_totales+1:
-        print("No existe ese producto, Intente nuevamente.")
-        print("Volviendo al menu...")
-        time.sleep(1)
-        menu()
+def comprar():
+    while True:
+        if len(carrito) == 0:
+            print("El carrito esta vacio")
+        else:
+            print(f"El carrito contiene {len(carrito)} productos")
+        print(f'''Opciones de compra:
+            1. Manzanas, stock: {stock[0]}
+            2. Peras, stock: {stock[1]}
+            3. Naranjas, stock: {stock[2]}
+            4. Harina, stock: {stock[3]}
+            5. Arroz, stock: {stock[4]}
+            6. Atun, stock: {stock[5]}
+            7. Coca-cola, stock: {stock[6]}
+            8. Cinta adesiva, stock: {stock[7]}''')
+        op2 = int(input("Ingrese una opcion, ingrese 0 para salir: "))
+        match op2:
+            case 0:
+                print("Volviendo al menu...")
+                time.sleep(2)
+                menu()
 
-    lista.pop(op2-1)
-    p_eliminados += 1
-    print(f"Se a eliminado exitosamente el producto {op2}")
-    print(f"Productos actuales: {lista}")
-    print("Volviendo al menu...")
-    time.sleep(2)
-    menu()
+            case 1:
+                print(f"Añadiendo 1 {stock_nom[0]} al carrito...")
+                carrito.append(stock_nom[0])
+                stock[0] -= 1
+
+            case 2:
+                print(f"Añadiendo 1 {stock_nom[1]} al carrito")
+                carrito.append(stock_nom[1])
+                stock[1] -=1
+
+            case 3:
+                print(f"Añadiendo 1 {stock_nom[2]} al carrito")
+                carrito.append(stock_nom[2])
+                stock[2] -= 1
+
+            case 4:
+                print(f"Añadiendo 1 {stock_nom[3]} al carrito")
+                carrito.append(stock_nom[3])
+                stock[3] -= 1
+
+            case 5:
+                print(f"Añadiendo 1 {stock_nom[4]} al carrito")
+                carrito.append(stock_nom[4])
+                stock[4] -= 1
+
+            case 6:
+                print(f"Añadiendo 1 {stock_nom[5]} al carrito")
+                carrito.append(stock_nom[5])
+                stock[5] -= 1
+
+            case 7:
+                print(f"Añadiendo 1 {stock_nom[6]} al carrito")
+                carrito.append(stock_nom[6])
+                stock[6] -= 1
+
+            case 8:
+                print(f"Añadiendo 1 {stock_nom[7]} al carrito")
+                carrito.append(stock_nom[7])
+                stock[7] -= 1
 
 
-def ver_productos():
-    system("cls")
-    print(f"Productos actuales: {lista}")
-    print("Volviendo al menu...")
-    time.sleep(1)
-    menu()
 
 
 
 
 def menu():
-    print('''Seleccione una opcion:
-        1. Añadir un producto
-        2. Eliminar un producto
-        3. Ver todos los productos
+    print('''Bienvenido al carrito de compras, seleccione una opcion:
+        1. Ingresar productos
+        2. Comprar
+        3. Crear boleta
         4. Salir''')
-    try:
-        op1 = int(input("Ingrese una opción: "))
-        match op1:
-            case 1:
-                print("Cargando...")
-                time.sleep(1)
-                add_product()
+    op1 = int(input("Seleccione una opcion: "))
+    match op1:
+        case 1:
+            print("Cargando...")
+            time.sleep(1)
 
-            case 2:
-                print("Cargando...")
-                time.sleep(1)
-                delete_product()
+        case 2:
+            print("Cargando...")
+            time.sleep(1)
+            comprar()
 
-            case 3:
-                print("Cargando...")
-                time.sleep(1)
-                ver_productos()
+        case 3:
+            print("Cargando...")
+            time.sleep(1)
 
-            case 4:
-                print("Saliendo...")
-                time.sleep(1)
-    except Exception as Error:
-        print(f"Ocurrio un error inesperado: {Error}")
-        print("Intente nuevamente.")
-        menu()
+        case 4:
+            print("Cargando...")
+            time.sleep(1)
+
 
 menu()
