@@ -928,79 +928,218 @@
 
 #----------------------------------------------------------------------------
 
+# import time
+# import random
+
+# op1 = int
+# op2 = int
+# op3 = int
+
+# stock = [10, 10, 10, 20, 20, 20, 10, 5]
+# stock_nom = ['Manzanas', 'Peras', 'Naranjas', 'Harina', 'Arroz', 'Atun', 'Coca-cola', 'Cinta-Adesiva']
+# carrito = []
+# boleta = []
+
+# def comprar():
+#     while True:
+#         if len(carrito) == 0:
+#             print("El carrito esta vacio")
+#         else:
+#             print(f"El carrito contiene {len(carrito)} productos")
+#         print(f'''Opciones de compra:
+#             1. Manzanas, stock: {stock[0]}
+#             2. Peras, stock: {stock[1]}
+#             3. Naranjas, stock: {stock[2]}
+#             4. Harina, stock: {stock[3]}
+#             5. Arroz, stock: {stock[4]}
+#             6. Atun, stock: {stock[5]}
+#             7. Coca-cola, stock: {stock[6]}
+#             8. Cinta adesiva, stock: {stock[7]}''')
+#         op2 = int(input("Ingrese una opcion, ingrese 0 para salir: "))
+#         match op2:
+#             case 0:
+#                 print("Volviendo al menu...")
+#                 time.sleep(2)
+#                 menu()
+
+#             case 1:
+#                 print(f"Añadiendo 1 {stock_nom[0]} al carrito...")
+#                 carrito.append(stock_nom[0])
+#                 stock[0] -= 1
+
+#             case 2:
+#                 print(f"Añadiendo 1 {stock_nom[1]} al carrito")
+#                 carrito.append(stock_nom[1])
+#                 stock[1] -=1
+
+#             case 3:
+#                 print(f"Añadiendo 1 {stock_nom[2]} al carrito")
+#                 carrito.append(stock_nom[2])
+#                 stock[2] -= 1
+
+#             case 4:
+#                 print(f"Añadiendo 1 {stock_nom[3]} al carrito")
+#                 carrito.append(stock_nom[3])
+#                 stock[3] -= 1
+
+#             case 5:
+#                 print(f"Añadiendo 1 {stock_nom[4]} al carrito")
+#                 carrito.append(stock_nom[4])
+#                 stock[4] -= 1
+
+#             case 6:
+#                 print(f"Añadiendo 1 {stock_nom[5]} al carrito")
+#                 carrito.append(stock_nom[5])
+#                 stock[5] -= 1
+
+#             case 7:
+#                 print(f"Añadiendo 1 {stock_nom[6]} al carrito")
+#                 carrito.append(stock_nom[6])
+#                 stock[6] -= 1
+
+#             case 8:
+#                 print(f"Añadiendo 1 {stock_nom[7]} al carrito")
+#                 carrito.append(stock_nom[7])
+#                 stock[7] -= 1
+
+
+
+
+
+
+# def menu():
+#     print('''Bienvenido al carrito de compras, seleccione una opcion:
+#         1. Ingresar productos
+#         2. Comprar
+#         3. Crear boleta
+#         4. Salir''')
+#     op1 = int(input("Seleccione una opcion: "))
+#     match op1:
+#         case 1:
+#             print("Cargando...")
+#             time.sleep(1)
+
+#         case 2:
+#             print("Cargando...")
+#             time.sleep(1)
+#             comprar()
+
+#         case 3:
+#             print("Cargando...")
+#             time.sleep(1)
+
+#         case 4:
+#             print("Cargando...")
+#             time.sleep(1)
+
+
+# menu()
+
+#----------------------------------------------------------------------------
+
+# diccionario = {
+#     "nombre":"kuek",
+#     "numero":123456789,
+#     "alo":True,
+# }
+
+# for key, value in diccionario.items():
+#     print(f"{key}:{value}")
+
+
+# diccionario["ciudad"]="Talca"
+
+# for key, value in diccionario.items():
+#     print(f"{key}:{value}")
+
+#----------------------------------------------------------------------------
+
+# frutas={
+#     "manzana":1000,
+#     "pera":1200,
+#     "naranja":1300
+# }
+
+# op1 = input("Elija una fruta: ")
+
+# op2 = frutas.get(op1)
+
+# print(op2)
+
+#----------------------------------------------------------------------------
+
+# frutas={
+#     "naranja":1200,
+#     "pera":1200
+# }
+
+# op1 = input("Ingrese una fruta: ")
+# op2 = int(input("Ingrese el precio: "))
+
+# frutas[op1]=op2
+
+# print(frutas)
+
+#----------------------------------------------------------------------------
 import time
-import random
 
-op1 = int
-op2 = int
-op3 = int
+carrito=[]
+total=0
 
-stock = [10, 10, 10, 20, 20, 20, 10, 5]
-stock_nom = ['Manzanas', 'Peras', 'Naranjas', 'Harina', 'Arroz', 'Atun', 'Coca-cola', 'Cinta-Adesiva']
-carrito = []
-boleta = []
+frutas={
+    "manzana":1000,
+    "pera":1200,
+    "naranja":1300,
+    "sandia":3000
+}
+
+
+def ingresar():
+    n_add = input("Ingrese el nombre de la fruta a ingresar: ")
+    p_add = int(input("Ingrese el precio de la fruta a ingresar: "))
+    frutas[n_add]=p_add
+    print(f"Se a añadido {n_add} a ${p_add} exitosamente")
+    print("Volviendo al menu...")
+    time.sleep(1)
+    menu()
+
+def actualizar_p():
+    n_edit=input("Ingrese el nombre de la fruta a actualizar: ")
+    p_edit=int(input(f"Ingrese el nuevo precio de {n_edit}: "))
+    frutas[n_edit]=p_edit
+    print(f"Se edito exitosamente el precio de {n_edit} a ${p_edit}")
+    print("Volviendo al menu...")
+    time.sleep(1)
+
+def borrar():
+    n_delete=input("Ingrese el nombre de la fruta a borrar: ")
+    del frutas[n_delete]
+    print(f"Se borro {n_delete} de las frutas")
+    print(f"La lista se a actualizado: {frutas}")
+    print("Volviendo al menu...")
+    time.sleep(1)
+    menu()
+
+def mostrar():
+    for key, value, i in frutas.items:
+        print(f"{i}. {key}, ${value}")
+    print("Volviendo al menu...")
+    time.sleep(1)
+    menu()
 
 def comprar():
-    while True:
-        if len(carrito) == 0:
-            print("El carrito esta vacio")
-        else:
-            print(f"El carrito contiene {len(carrito)} productos")
-        print(f'''Opciones de compra:
-            1. Manzanas, stock: {stock[0]}
-            2. Peras, stock: {stock[1]}
-            3. Naranjas, stock: {stock[2]}
-            4. Harina, stock: {stock[3]}
-            5. Arroz, stock: {stock[4]}
-            6. Atun, stock: {stock[5]}
-            7. Coca-cola, stock: {stock[6]}
-            8. Cinta adesiva, stock: {stock[7]}''')
-        op2 = int(input("Ingrese una opcion, ingrese 0 para salir: "))
-        match op2:
-            case 0:
-                print("Volviendo al menu...")
-                time.sleep(2)
-                menu()
+    global frutas, total
+    print("Bienvenido al menu de compras")
+    n_compra=input("Ingrese el nombre de la fruta que desea comprar: ")
+    precio= frutas.get(n_compra)
+    total += precio
+    carrito.append(n_compra)
+    print(f"Su carrito lleva: {carrito}")
+    print(f"Su total actual es de: {total}")
+    print("Volviendo al menu...")
+    time.sleep(1)
+    menu()
 
-            case 1:
-                print(f"Añadiendo 1 {stock_nom[0]} al carrito...")
-                carrito.append(stock_nom[0])
-                stock[0] -= 1
-
-            case 2:
-                print(f"Añadiendo 1 {stock_nom[1]} al carrito")
-                carrito.append(stock_nom[1])
-                stock[1] -=1
-
-            case 3:
-                print(f"Añadiendo 1 {stock_nom[2]} al carrito")
-                carrito.append(stock_nom[2])
-                stock[2] -= 1
-
-            case 4:
-                print(f"Añadiendo 1 {stock_nom[3]} al carrito")
-                carrito.append(stock_nom[3])
-                stock[3] -= 1
-
-            case 5:
-                print(f"Añadiendo 1 {stock_nom[4]} al carrito")
-                carrito.append(stock_nom[4])
-                stock[4] -= 1
-
-            case 6:
-                print(f"Añadiendo 1 {stock_nom[5]} al carrito")
-                carrito.append(stock_nom[5])
-                stock[5] -= 1
-
-            case 7:
-                print(f"Añadiendo 1 {stock_nom[6]} al carrito")
-                carrito.append(stock_nom[6])
-                stock[6] -= 1
-
-            case 8:
-                print(f"Añadiendo 1 {stock_nom[7]} al carrito")
-                carrito.append(stock_nom[7])
-                stock[7] -= 1
 
 
 
@@ -1008,29 +1147,44 @@ def comprar():
 
 
 def menu():
-    print('''Bienvenido al carrito de compras, seleccione una opcion:
-        1. Ingresar productos
-        2. Comprar
-        3. Crear boleta
-        4. Salir''')
-    op1 = int(input("Seleccione una opcion: "))
+    print('''Tienda de frutas:
+        1. Ingresar fruta y precio
+        2. Actualizar precio
+        3. Borrar fruta y precio
+        4. Mostrar todas las frutas y precios
+        5. Comprar
+        6. Salir''')
+    op1 = int(input("Ingrese su opción: "))
     match op1:
         case 1:
             print("Cargando...")
             time.sleep(1)
+            ingresar()
 
         case 2:
             print("Cargando...")
             time.sleep(1)
-            comprar()
+            actualizar_p()
 
         case 3:
             print("Cargando...")
             time.sleep(1)
+            borrar()
 
         case 4:
             print("Cargando...")
             time.sleep(1)
+            mostrar()
+
+        case 5:
+            print("Cargando...")
+            time.sleep(1)
+            comprar()
+
+        case 6:
+            print("Cargando...")
+            time.sleep(1)
+
 
 
 menu()
