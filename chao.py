@@ -1081,110 +1081,167 @@
 # print(frutas)
 
 #----------------------------------------------------------------------------
+# import time
+
+# carrito=[]
+# total=0
+
+# frutas={
+#     "manzana":1000,
+#     "pera":1200,
+#     "naranja":1300,
+#     "sandia":3000
+# }
+
+
+# def ingresar():
+#     n_add = input("Ingrese el nombre de la fruta a ingresar: ")
+#     p_add = int(input("Ingrese el precio de la fruta a ingresar: "))
+#     frutas[n_add]=p_add
+#     print(f"Se a añadido {n_add} a ${p_add} exitosamente")
+#     print("Volviendo al menu...")
+#     time.sleep(1)
+#     menu()
+
+# def actualizar_p():
+#     n_edit=input("Ingrese el nombre de la fruta a actualizar: ")
+#     p_edit=int(input(f"Ingrese el nuevo precio de {n_edit}: "))
+#     frutas[n_edit]=p_edit
+#     print(f"Se edito exitosamente el precio de {n_edit} a ${p_edit}")
+#     print("Volviendo al menu...")
+#     time.sleep(1)
+
+# def borrar():
+#     n_delete=input("Ingrese el nombre de la fruta a borrar: ")
+#     del frutas[n_delete]
+#     print(f"Se borro {n_delete} de las frutas")
+#     print(f"La lista se a actualizado: {frutas}")
+#     print("Volviendo al menu...")
+#     time.sleep(1)
+#     menu()
+
+# def mostrar():
+#     for key, value, i in frutas.items:
+#         print(f"{i}. {key}, ${value}")
+#     print("Volviendo al menu...")
+#     time.sleep(1)
+#     menu()
+
+# def comprar():
+#     global frutas, total
+#     print("Bienvenido al menu de compras")
+#     n_compra=input("Ingrese el nombre de la fruta que desea comprar: ")
+#     precio= frutas.get(n_compra)
+#     total += precio
+#     carrito.append(n_compra)
+#     print(f"Su carrito lleva: {carrito}")
+#     print(f"Su total actual es de: {total}")
+#     print("Volviendo al menu...")
+#     time.sleep(1)
+#     menu()
+
+
+
+
+
+
+
+# def menu():
+#     print('''Tienda de frutas:
+#         1. Ingresar fruta y precio
+#         2. Actualizar precio
+#         3. Borrar fruta y precio
+#         4. Mostrar todas las frutas y precios
+#         5. Comprar
+#         6. Salir''')
+#     op1 = int(input("Ingrese su opción: "))
+#     match op1:
+#         case 1:
+#             print("Cargando...")
+#             time.sleep(1)
+#             ingresar()
+
+#         case 2:
+#             print("Cargando...")
+#             time.sleep(1)
+#             actualizar_p()
+
+#         case 3:
+#             print("Cargando...")
+#             time.sleep(1)
+#             borrar()
+
+#         case 4:
+#             print("Cargando...")
+#             time.sleep(1)
+#             mostrar()
+
+#         case 5:
+#             print("Cargando...")
+#             time.sleep(1)
+#             comprar()
+
+#         case 6:
+#             print("Cargando...")
+#             time.sleep(1)
+
+
+
+# menu()
+
+#----------------------------------------------------------------------------
+
 import time
 
-carrito=[]
-total=0
+op1 = 0
+op2 = 0
+i = 0
+p_1 = 0
 
-frutas={
-    "manzana":1000,
-    "pera":1200,
-    "naranja":1300,
-    "sandia":3000
+dicc = {
+    "nombre":"Lapiz", "precio":100,
+    "nombre":"Goma", "precio":300
 }
 
+print(dicc)
 
-def ingresar():
-    n_add = input("Ingrese el nombre de la fruta a ingresar: ")
-    p_add = int(input("Ingrese el precio de la fruta a ingresar: "))
-    frutas[n_add]=p_add
-    print(f"Se a añadido {n_add} a ${p_add} exitosamente")
-    print("Volviendo al menu...")
-    time.sleep(1)
-    menu()
-
-def actualizar_p():
-    n_edit=input("Ingrese el nombre de la fruta a actualizar: ")
-    p_edit=int(input(f"Ingrese el nuevo precio de {n_edit}: "))
-    frutas[n_edit]=p_edit
-    print(f"Se edito exitosamente el precio de {n_edit} a ${p_edit}")
-    print("Volviendo al menu...")
-    time.sleep(1)
-
-def borrar():
-    n_delete=input("Ingrese el nombre de la fruta a borrar: ")
-    del frutas[n_delete]
-    print(f"Se borro {n_delete} de las frutas")
-    print(f"La lista se a actualizado: {frutas}")
-    print("Volviendo al menu...")
-    time.sleep(1)
-    menu()
-
-def mostrar():
-    for key, value, i in frutas.items:
-        print(f"{i}. {key}, ${value}")
-    print("Volviendo al menu...")
-    time.sleep(1)
-    menu()
-
-def comprar():
-    global frutas, total
-    print("Bienvenido al menu de compras")
-    n_compra=input("Ingrese el nombre de la fruta que desea comprar: ")
-    precio= frutas.get(n_compra)
-    total += precio
-    carrito.append(n_compra)
-    print(f"Su carrito lleva: {carrito}")
-    print(f"Su total actual es de: {total}")
-    print("Volviendo al menu...")
-    time.sleep(1)
-    menu()
+def agregar():
+    global i, op1, op2, p_1
+    print("Lista de objetos actual")
+    for nombre, precio in dicc.items():
+        if dicc["nombre"] == p_1:
+            break
+        i+= 1
+        print(f"{i}. {dicc["nombre"]}, ${dicc["precio"]}")
+        p_1=dicc["nombre"]
+    p_add = str(input("Ingrese el nombre del producto a agregar: "))
+    p_add_price = int(input("Ingrese el precio del producto a agregar: "))
 
 
 
 
 
+op1=(int(input('''
+Seleccione una opción:
+1. Agregar articulo
+2. Borrar Articulo
+3. Actualizar Articulo
+4. Mostrar listado de articulos
+5. Salir''')))
 
+match op1:
+    case 1:
+        print("Cargando...")
+        agregar()
 
-def menu():
-    print('''Tienda de frutas:
-        1. Ingresar fruta y precio
-        2. Actualizar precio
-        3. Borrar fruta y precio
-        4. Mostrar todas las frutas y precios
-        5. Comprar
-        6. Salir''')
-    op1 = int(input("Ingrese su opción: "))
-    match op1:
-        case 1:
-            print("Cargando...")
-            time.sleep(1)
-            ingresar()
+    case 2:
+        print("Cargando...")
 
-        case 2:
-            print("Cargando...")
-            time.sleep(1)
-            actualizar_p()
+    case 3:
+        print("Cargando...")
 
-        case 3:
-            print("Cargando...")
-            time.sleep(1)
-            borrar()
+    case 4:
+        print("Cargando...")
 
-        case 4:
-            print("Cargando...")
-            time.sleep(1)
-            mostrar()
-
-        case 5:
-            print("Cargando...")
-            time.sleep(1)
-            comprar()
-
-        case 6:
-            print("Cargando...")
-            time.sleep(1)
-
-
-
-menu()
+    case 5:
+        print("Cargando...")
