@@ -145,6 +145,15 @@ def see_grades():
             logged = False
 
 
+def anotations():
+    global logged
+    while logged == True:
+        print("kuek")
+        print("Volviendo al menu...")
+        time.sleep(3)
+        teacher_menu()
+
+
 def edit_grades():
     global logged, actual, student_grades_1, student_grades_2, student_grades_3, student_grades_4, student_grades_5, student_grades_6, student_grades_7, student_grades_8, student_grades_9, student_grades_10, student_grades_11, student_grades_12, student_grades_13
     while logged == True:
@@ -206,7 +215,9 @@ def teacher_menu():
                 edit_grades()
 
             case 4:
-                print
+                print("Cargando anotaciones...")
+                anotations()
+
 
             case 5:
                 print("Saliendo...")
