@@ -1191,57 +1191,172 @@
 
 #----------------------------------------------------------------------------
 
-import time
+# import time
 
-op1 = 0
-op2 = 0
-i = 0
-p_1 = 0
+# op1 = 0
+# op2 = 0
+# i = 0
+# p_1 = 0
 
-dicc = {
-    "nombre":"Lapiz", "precio":100,
-    "nombre":"Goma", "precio":300
+# dicc = {
+#     "nombre":"Lapiz", "precio":100,
+#     "nombre":"Goma", "precio":300
+# }
+
+# print(dicc)
+
+# def agregar():
+#     global i, op1, op2, p_1
+#     print("Lista de objetos actual")
+#     for nombre, precio in dicc.items():
+#         if dicc["nombre"] == p_1:
+#             break
+#         i+= 1
+#         print(f"{i}. {dicc["nombre"]}, ${dicc["precio"]}")
+#         p_1=dicc["nombre"]
+#     p_add = str(input("Ingrese el nombre del producto a agregar: "))
+#     p_add_price = int(input("Ingrese el precio del producto a agregar: "))
+
+
+
+
+
+# op1=(int(input('''
+# Seleccione una opción:
+# 1. Agregar articulo
+# 2. Borrar Articulo
+# 3. Actualizar Articulo
+# 4. Mostrar listado de articulos
+# 5. Salir''')))
+
+# match op1:
+#     case 1:
+#         print("Cargando...")
+#         agregar()
+
+#     case 2:
+#         print("Cargando...")
+
+#     case 3:
+#         print("Cargando...")
+
+#     case 4:
+#         print("Cargando...")
+
+#     case 5:
+#         print("Cargando...")
+
+
+#----------------------------------------------------------------------------
+
+import random, time
+p_valida = None
+code_last = 15
+
+todo = {
+    'obj1':{
+        "nombre": "kuek",
+        "precio":58000,
+        "code":15
+    },
+    'obj2':{
+        "nombre": "lel",
+        "precio": 1000,
+        "code": 12
+    },
+    'obj3':{
+        'nombre':"alo",
+        "precio":500,
+        "code":19
+    }
 }
 
-print(dicc)
+# valor1 = todo['obj1']['nombre']
+# precio1 = todo['obj1']['precio']
+# valor2 = todo['obj2']['nombre']
+# print(valor1)
 
-def agregar():
-    global i, op1, op2, p_1
-    print("Lista de objetos actual")
-    for nombre, precio in dicc.items():
-        if dicc["nombre"] == p_1:
-            break
-        i+= 1
-        print(f"{i}. {dicc["nombre"]}, ${dicc["precio"]}")
-        p_1=dicc["nombre"]
-    p_add = str(input("Ingrese el nombre del producto a agregar: "))
-    p_add_price = int(input("Ingrese el precio del producto a agregar: "))
+# for i in range (len(todo)):
+#     valor_n = todo[f'obj{i+1}']['nombre']
+#     valor_p = todo[f'obj{i+1}']['precio']
+#     valor_c = todo[f'obj{i+1}']['code']
+#     print(f"{i+1}.{valor_n}: ${valor_p}, {valor_c}")
+def ver_objs():
+    print("Objetos en el diccionario:")
+    for i in range (len(todo)):
+        value_n = todo[f'obj{i+1}']['nombre']
+        value_p = todo[f'obj{i+1}']['precio']
+        value_c = todo[f'obj{i+1}']['code']
+        print(f"{i+1}.{value_n}: ${value_p}, {value_c}")
+    print("Volviendo al menu...")
+    time.sleep(1)
+    menu()
+
+def add_objs():
+    print("Añadir objetos")
+    print("Objetos actuales:")
+    for i in range (len(todo)):
+        value_n = todo[f'obj{i+1}']['nombre']
+        value_p = todo[f'obj{i+1}']['precio']
+        value_c = todo[f'obj{i+1}']['code']
+        print(f"{i+1}.{value_n}: ${value_p}, {value_c}")
+    add_n = str(input("Ingrese el nombre del objeto a añadir: "))
+    add_p = int(input("Ingrese el precio del objeto a añadir: "))
+    add_code = code_last+1
+    code_last += 1
+    
+
+    
 
 
 
+def menu():
+    print('''Menu
+          1. Ver Objetos en el diccionario
+          2. Añadir objetos
+          3. Eliminar objetos
+          4. Editar objetos
+          5. Salir''')
+    op1 = int(input("Ingrese una opcion: "))
+    match op1:
+        case 1:
+            print("Cargando...")
+            ver_objs()
+
+        case 2:
+            print("Cargando...")
+
+        case 3:
+            print("Cargando...")
+
+        case 4:
+            print("Cargando...")
+
+        case 5:
+            print("Saliendo...")
+            time.sleep(2)
 
 
-op1=(int(input('''
-Seleccione una opción:
-1. Agregar articulo
-2. Borrar Articulo
-3. Actualizar Articulo
-4. Mostrar listado de articulos
-5. Salir''')))
+def login():
+    global user, passw
+    Mayuscula = None
+    Minuscula = None
+    Numero = None
+    user = input("Ingrese usuario a crear: ")
+    passw = input("Ingrese contraseña a crear: ")
+    for palabra in passw:
+        if palabra.isupper():
+            Mayuscula = True
+        if palabra.islower():
+            Minuscula = True
+        if palabra.isdigit():
+            Numero = True
 
-match op1:
-    case 1:
+    if Numero == True and Mayuscula == True and Numero == True:
+        p_valida == True
+        print("Su contraseña es valida para ingreso")
         print("Cargando...")
-        agregar()
+    else:
+        print("Su contraseña no es valida para el ingreso, intente nuevamente.")
 
-    case 2:
-        print("Cargando...")
-
-    case 3:
-        print("Cargando...")
-
-    case 4:
-        print("Cargando...")
-
-    case 5:
-        print("Cargando...")
+login()
